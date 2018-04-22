@@ -1,6 +1,6 @@
 # three.js EffectComposer
 ![three.js version](https://img.shields.io/badge/three.js-v0.92.0-green.svg?style=flat-square)
-[![GitHub issues](https://img.shields.io/github/issues/j0hh/three-effectcomposer.svg?style=flat-square)](https://github.com/j0hh/three-effectcomposer/issues)
+[![GitHub issues](https://img.shields.io/github/issues/johh/three-effectcomposer.svg?style=flat-square)](https://github.com/johh/three-effectcomposer/issues)
 
 
 ## Installation

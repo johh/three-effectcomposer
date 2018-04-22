@@ -3,10 +3,10 @@
   "version": "0.0.2",
   "description": "three.js's EffectComposer ported to ES6",
   "main": "dist/index.js",
-  "homepage": "https://github.com/j0hh/three-effectcomposer#readme",
+  "homepage": "https://github.com/johh/three-effectcomposer#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/j0hh/three-effectcomposer.git"
+    "url": "https://github.com/johh/three-effectcomposer.git"
   },
   "scripts": {
     "test": "webpack test/utils/env.js -o test/_tmp/EffectComposer.js && mocha && npm run clean:test",
