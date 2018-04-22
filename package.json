@@ -16,7 +16,8 @@
     "effectcomposer",
     "glsl",
     "shader",
-    "postprocessing"
+    "postprocessing",
+    "renderpass"
   ],
   "author": "JohH <code@johh.net>",
   "license": "MIT",
