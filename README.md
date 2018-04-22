@@ -44,7 +44,7 @@ const composer = new EffectComposer( renderer );
 ##Testing
 Testing is done with mocha in a Chromium environment using puppeteer.
 
-Right now, only rudimentary tests are implemented. The structure of all classes is compared to their original counterparts. **The behavior is not tested.**
+Right now, only rudimentary tests are implemented. The structure of each class is compared to its original counterpart. **The behavior is not tested.**
 
 
 ##Credits
