@@ -1,0 +1,6 @@
+src/
+test/
+.eslintrc
+.editorconfig
+.babelrc
+yarn-error.log

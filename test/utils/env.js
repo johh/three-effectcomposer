@@ -1,0 +1,1 @@
+window.EffectComposer = require( '../../dist' );
