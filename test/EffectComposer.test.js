@@ -3,7 +3,7 @@ const runTest = require( './utils/runner' ).run;
 
 describe( 'EffectComposer', () => {
 
-	it( 'should match original in structure', ( done ) => {
+	it( 'should match original in structure', ( callback ) => {
 
 		runTest( {
 			test: () => {
@@ -27,7 +27,7 @@ describe( 'EffectComposer', () => {
 				return error || undefined;
 
 			},
-			callback: done,
+			callback,
 		} );
 
 	} );

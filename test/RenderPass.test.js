@@ -3,7 +3,7 @@ const runTest = require( './utils/runner' ).run;
 
 describe( 'RenderPass', () => {
 
-	it( 'should match original in structure', ( done ) => {
+	it( 'should match original in structure', ( callback ) => {
 
 		runTest( {
 			test: () => {
@@ -26,7 +26,7 @@ describe( 'RenderPass', () => {
 				return error || undefined;
 
 			},
-			callback: done,
+			callback,
 		} );
 
 	} );

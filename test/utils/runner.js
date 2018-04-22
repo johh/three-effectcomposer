@@ -58,8 +58,6 @@ puppeteer.launch( {
 
 	}
 
-	// await browser.close();
-
 } );
 
 

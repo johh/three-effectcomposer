@@ -3,7 +3,7 @@ const runTest = require( './utils/runner' ).run;
 
 describe( 'CopyShader', () => {
 
-	it( 'should match original in structure', ( done ) => {
+	it( 'should match original in structure', ( callback ) => {
 
 		runTest( {
 			test: () => {
@@ -23,7 +23,7 @@ describe( 'CopyShader', () => {
 				return error || undefined;
 
 			},
-			callback: done,
+			callback,
 		} );
 
 	} );

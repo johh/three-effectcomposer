@@ -1,4 +1,3 @@
-
 export { default as CopyShader } from './lib/CopyShader';
 
 export { default as Pass } from './lib/Pass';
