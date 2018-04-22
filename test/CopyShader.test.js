@@ -8,7 +8,7 @@ describe( 'CopyShader', () => {
 		runTest( {
 			test: () => {
 
-				let error = false;
+				let error;
 
 				try	{
 
@@ -20,7 +20,7 @@ describe( 'CopyShader', () => {
 
 				}
 
-				return error || undefined;
+				return error;
 
 			},
 			callback,

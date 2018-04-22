@@ -8,7 +8,7 @@ describe( 'EffectComposer', () => {
 		runTest( {
 			test: () => {
 
-				let error = false;
+				let error;
 
 				try	{
 
@@ -24,7 +24,7 @@ describe( 'EffectComposer', () => {
 
 				}
 
-				return error || undefined;
+				return error;
 
 			},
 			callback,

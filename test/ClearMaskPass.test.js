@@ -8,7 +8,7 @@ describe( 'ClearMaskPass', () => {
 		runTest( {
 			test: () => {
 
-				let error = false;
+				let error;
 
 				try	{
 
@@ -23,7 +23,7 @@ describe( 'ClearMaskPass', () => {
 
 				}
 
-				return error || undefined;
+				return error;
 
 			},
 			callback,

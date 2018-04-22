@@ -8,7 +8,7 @@ describe( 'ShaderPass', () => {
 		runTest( {
 			test: () => {
 
-				let error = false;
+				let error;
 
 				try	{
 
@@ -23,7 +23,7 @@ describe( 'ShaderPass', () => {
 
 				}
 
-				return error || undefined;
+				return error;
 
 			},
 			callback,
