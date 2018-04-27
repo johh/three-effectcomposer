@@ -38,7 +38,7 @@ const composer = new EffectComposer( renderer );
 ## Differences to the original
 - This package does not rely on namespace pollution, so `THREE.EffectComposer`, `THREE.Pass`, etc. remain undefined.
 
-- An additional Pass, called `RenderingPass`, is exported. It includes a standard rendering setup, i.e. a scene (as `this.scene`), including a ortographic camera (`this.camera`) and quad (`this.quad`). This is useful, if your custom pass requires a said setup, but a customized rendering function.
+- An additional Pass, called `RenderingPass`, is exported. It includes a standard rendering setup, i.e. a scene (as `this.scene`), including a ortographic camera (`this.camera`) and quad (`this.quad`). This is useful if your custom pass requires said setup, but a customized rendering function.
 
 
 ## Testing
