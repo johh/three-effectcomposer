@@ -2,6 +2,8 @@ import * as THREE from 'three';
 
 import ShaderPass from './ShaderPass';
 import CopyShader from './CopyShader';
+import MaskPass from './MaskPass';
+import ClearMaskPass from './ClearMaskPass';
 
 
 export default class EffectComposer {
@@ -100,17 +102,13 @@ export default class EffectComposer {
 
 				}
 
-				if ( THREE.MaskPass !== undefined ) {
+				if ( pass instanceof MaskPass ) {
 
-					if ( pass instanceof THREE.MaskPass ) {
+					maskActive = true;
 
-						maskActive = true;
+				} else if ( pass instanceof ClearMaskPass ) {
 
-					} else if ( pass instanceof THREE.ClearMaskPass ) {
-
-						maskActive = false;
-
-					}
+					maskActive = false;
 
 				}
 
