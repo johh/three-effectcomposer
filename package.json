@@ -18,10 +18,15 @@
   "keywords": [
     "three",
     "three.js",
+    "effect",
+    "composer",
     "effectcomposer",
     "glsl",
     "shader",
     "postprocessing",
+    "post",
+    "processing",
+    "render",
     "renderpass"
   ],
   "author": "JohH <code@johh.net>",
