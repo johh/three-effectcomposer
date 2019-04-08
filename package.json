@@ -50,6 +50,6 @@
     "webpack-cli": "^2.0.15"
   },
   "peerDependencies": {
-    "three": ">=0.83.0"
+    "three": ">=0.102.0"
   }
 }

@@ -1,10 +1,10 @@
 import * as THREE from 'three';
 
-import RenderingPass from './RenderingPass';
+import Pass from './Pass';
 import CopyShader from './CopyShader';
 
 
-export default class TexturePass extends RenderingPass {
+export default class TexturePass extends Pass {
 
 	constructor( map, opacity ) {
 
@@ -29,6 +29,8 @@ export default class TexturePass extends RenderingPass {
 
 		this.needsSwap = false;
 
+		this.fsQuad = new Pass.FullScreenQuad( null );
+
 	}
 
 
@@ -39,13 +41,15 @@ export default class TexturePass extends RenderingPass {
 		const oldAutoClear = renderer.autoClear;
 		renderer.autoClear = false;
 
-		this.quad.material = this.material;
+		this.fsQuad.material = this.material;
 
 		this.uniforms.opacity.value = this.opacity;
 		this.uniforms.tDiffuse.value = this.map;
 		this.material.transparent = ( this.opacity < 1.0 );
 
-		renderer.render( this.scene, this.camera, this.renderToScreen ? null : readBuffer, this.clear );
+		renderer.setRenderTarget( this.renderToScreen ? null : readBuffer );
+		if ( this.clear ) renderer.clear();
+		this.fsQuad.render( renderer );
 
 		renderer.autoClear = oldAutoClear;
 

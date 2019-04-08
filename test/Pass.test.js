@@ -17,6 +17,11 @@ describe( 'Pass', () => {
 
 					chai.assert.containsAllKeys( B, A );
 
+					const C = new THREE.Pass.FullScreenQuad();
+					const D = new window.EffectComposer.Pass.FullScreenQuad();
+
+					chai.assert.containsAllKeys( C, D );
+
 				} catch ( e ) {
 
 					error = e;

@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 
-import RenderingPass from './RenderingPass';
+import Pass from './Pass';
 
 
-export default class ShaderPass extends RenderingPass {
+export default class ShaderPass extends Pass {
 
 	constructor( shader, textureID ) {
 
@@ -32,6 +32,8 @@ export default class ShaderPass extends RenderingPass {
 
 		}
 
+		this.fsQuad = new Pass.FullScreenQuad( this.material );
+
 	}
 
 
@@ -43,15 +45,27 @@ export default class ShaderPass extends RenderingPass {
 
 		}
 
-		this.quad.material = this.material;
+		this.fsQuad.material = this.material;
 
 		if ( this.renderToScreen ) {
 
-			renderer.render( this.scene, this.camera );
+			renderer.setRenderTarget( null );
+			this.fsQuad.render( renderer );
 
 		} else {
 
-			renderer.render( this.scene, this.camera, writeBuffer, this.clear );
+			renderer.setRenderTarget( writeBuffer );
+			// TODO: Avoid using autoClear properties, see https://github.com/mrdoob/three.js/pull/15571#issuecomment-465669600
+			if ( this.clear ) {
+
+				renderer.clear(
+					renderer.autoClearColor,
+					renderer.autoClearDepth,
+					renderer.autoClearStencil,
+				);
+
+			}
+			this.fsQuad.render( renderer );
 
 		}
 

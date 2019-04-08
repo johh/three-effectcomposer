@@ -1,5 +1,5 @@
 # three.js EffectComposer
-![three.js version](https://img.shields.io/badge/three.js-v0.94.0-green.svg?style=flat-square)
+![three.js version](https://img.shields.io/badge/three.js-v0.103.0-green.svg?style=flat-square)
 [![GitHub issues](https://img.shields.io/github/issues/johh/three-effectcomposer.svg?style=flat-square)](https://github.com/johh/three-effectcomposer/issues)
 
 
@@ -13,7 +13,7 @@ npm i --save @johh/three-effectcomposer
 
 
 ## Description
-three.js's r94 [EffectComposer](https://github.com/mrdoob/three.js/blob/dev/examples/js/postprocessing/EffectComposer.js) ported to ES6 for easy importing.
+three.js's r103 [EffectComposer](https://github.com/mrdoob/three.js/blob/dev/examples/js/postprocessing/EffectComposer.js) ported to ES6 for easy importing.
 
 
 ## Usage
@@ -48,4 +48,4 @@ Right now, only rudimentary tests are implemented. The structure of each class i
 
 
 ## Credits
-This package is heavily based on code that was originally written by [alteredq](https://github.com/alteredq) and is licensed **MIT** © 2010-2018 three.js authors.
+This package is heavily based on code that was originally written by [alteredq](https://github.com/alteredq) and is licensed **MIT** © 2010-2019 three.js authors.
