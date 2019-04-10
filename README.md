@@ -38,13 +38,15 @@ const composer = new EffectComposer( renderer );
 ## Differences to the original
 - This package does not rely on namespace pollution, so `THREE.EffectComposer`, `THREE.Pass`, etc. remain undefined.
 
-- An additional Pass, called `RenderingPass`, is exported. It includes a standard rendering setup, i.e. a scene (as `this.scene`), including a ortographic camera (`this.camera`) and quad (`this.quad`). This is useful if your custom pass requires said setup, but a customized rendering function.
+- An additional Pass, called `RenderingPass`, is exported. It includes a standard rendering setup, i.e. a scene (as `this.scene`), including an orthographic camera (`this.camera`) and quad (`this.quad`). This is useful if your custom pass requires said setup, but a customized rendering function. Since r103 this pass has been made redundant by Pass.FullScreenQuad, but remains for backwards compatibility.
 
 
 ## Testing
 Testing is done with mocha in a Chromium environment using puppeteer.
 
-Right now, only rudimentary tests are implemented. The structure of each class is compared to its original counterpart. **The behavior is not tested.**
+The structure of each class, as well as its visual output, is compared to its original counterpart.
+
+Due to the virtually infinite number of possible combinations it is pretty much impossible to cover **every** use case.
 
 
 ## Credits
