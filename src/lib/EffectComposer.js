@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+
 import * as THREE from 'three';
 
 import ShaderPass from './ShaderPass';
@@ -36,9 +38,13 @@ export default class EffectComposer {
 		this.writeBuffer = this.renderTarget1;
 		this.readBuffer = this.renderTarget2;
 
+		this.renderToScreen = true;
+
 		this.passes = [];
 
 		this.copyPass = new ShaderPass( CopyShader );
+
+		this._previousFrameTime = Date.now();
 
 	}
 
@@ -56,7 +62,7 @@ export default class EffectComposer {
 
 		this.passes.push( pass );
 
-		const size = this.renderer.getDrawingBufferSize();
+		const size = this.renderer.getDrawingBufferSize( new THREE.Vector2() );
 		pass.setSize( size.width, size.height );
 
 	}
@@ -69,20 +75,45 @@ export default class EffectComposer {
 	}
 
 
-	render( delta ) {
+	isLastEnabledPass( passIndex ) {
+
+		for ( let i = passIndex + 1; i < this.passes.length; i += 1 ) {
+
+			if ( this.passes[ i ].enabled ) {
+
+				return false;
+
+			}
+
+		}
+
+		return true;
+
+	}
+
+
+	render( deltaTime = ( Date.now() - this._previousFrameTime ) * 0.001 ) {
+
+		// deltaTime value is in seconds
+
+		this._previousFrameTime = Date.now();
+
+		const currentRenderTarget = this.renderer.getRenderTarget();
 
 		let maskActive = false;
 
 		let pass;
 		let i;
+		const il = this.passes.length;
 
-		for ( i = 0; i < this.passes.length; i += 1 ) {
+		for ( i = 0; i < il; i += 1 ) {
 
 			pass = this.passes[ i ];
 
 			if ( pass.enabled !== false ) {
 
-				pass.render( this.renderer, this.writeBuffer, this.readBuffer, delta, maskActive );
+				pass.renderToScreen = ( this.renderToScreen && this.isLastEnabledPass( i ) );
+				pass.render( this.renderer, this.writeBuffer, this.readBuffer, deltaTime, maskActive );
 
 				if ( pass.needsSwap ) {
 
@@ -92,7 +123,7 @@ export default class EffectComposer {
 
 						context.stencilFunc( context.NOTEQUAL, 1, 0xffffffff );
 
-						this.copyPass.render( this.renderer, this.writeBuffer, this.readBuffer, delta );
+						this.copyPass.render( this.renderer, this.writeBuffer, this.readBuffer, deltaTime );
 
 						context.stencilFunc( context.EQUAL, 1, 0xffffffff );
 
@@ -102,19 +133,23 @@ export default class EffectComposer {
 
 				}
 
-				if ( pass instanceof MaskPass ) {
+			}
 
-					maskActive = true;
 
-				} else if ( pass instanceof ClearMaskPass ) {
+			if ( pass instanceof MaskPass ) {
 
-					maskActive = false;
+				maskActive = true;
 
-				}
+			} else if ( pass instanceof ClearMaskPass ) {
+
+				maskActive = false;
 
 			}
 
+
 		}
+
+		this.renderer.setRenderTarget( currentRenderTarget );
 
 	}
 
@@ -125,7 +160,7 @@ export default class EffectComposer {
 
 		if ( renderTarget === undefined ) {
 
-			const size = this.renderer.getDrawingBufferSize();
+			const size = this.renderer.getDrawingBufferSize( new THREE.Vector2() );
 
 			renderTarget = this.renderTarget1.clone();
 			renderTarget.setSize( size.width, size.height );

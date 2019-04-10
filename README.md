@@ -1,5 +1,5 @@
 # three.js EffectComposer
-![three.js version](https://img.shields.io/badge/three.js-v0.94.0-green.svg?style=flat-square)
+![three.js version](https://img.shields.io/badge/three.js-v0.103.0-green.svg?style=flat-square)
 [![GitHub issues](https://img.shields.io/github/issues/johh/three-effectcomposer.svg?style=flat-square)](https://github.com/johh/three-effectcomposer/issues)
 
 
@@ -13,7 +13,7 @@ npm i --save @johh/three-effectcomposer
 
 
 ## Description
-three.js's r94 [EffectComposer](https://github.com/mrdoob/three.js/blob/dev/examples/js/postprocessing/EffectComposer.js) ported to ES6 for easy importing.
+three.js's r103 [EffectComposer](https://github.com/mrdoob/three.js/blob/dev/examples/js/postprocessing/EffectComposer.js) ported to ES6 for easy importing.
 
 
 ## Usage
@@ -38,14 +38,16 @@ const composer = new EffectComposer( renderer );
 ## Differences to the original
 - This package does not rely on namespace pollution, so `THREE.EffectComposer`, `THREE.Pass`, etc. remain undefined.
 
-- An additional Pass, called `RenderingPass`, is exported. It includes a standard rendering setup, i.e. a scene (as `this.scene`), including a ortographic camera (`this.camera`) and quad (`this.quad`). This is useful if your custom pass requires said setup, but a customized rendering function.
+- An additional Pass, called `RenderingPass`, is exported. It includes a standard rendering setup, i.e. a scene (as `this.scene`), including an orthographic camera (`this.camera`) and quad (`this.quad`). This is useful if your custom pass requires said setup, but a customized rendering function. Since r103 this pass has been made redundant by Pass.FullScreenQuad, but remains for backwards compatibility.
 
 
 ## Testing
 Testing is done with mocha in a Chromium environment using puppeteer.
 
-Right now, only rudimentary tests are implemented. The structure of each class is compared to its original counterpart. **The behavior is not tested.**
+The structure of each class, as well as its visual output, is compared to its original counterpart.
+
+Due to the virtually infinite number of possible combinations it is pretty much impossible to cover **every** use case.
 
 
 ## Credits
-This package is heavily based on code that was originally written by [alteredq](https://github.com/alteredq) and is licensed **MIT** © 2010-2018 three.js authors.
+This package is heavily based on code that was originally written by [alteredq](https://github.com/alteredq) and is licensed **MIT** © 2010-2019 three.js authors.
