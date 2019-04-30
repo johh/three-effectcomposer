@@ -25,7 +25,7 @@ export default class EffectComposer {
 				stencilBuffer: false,
 			};
 
-			const size = renderer.getDrawingBufferSize();
+			const size = renderer.getDrawingBufferSize( new THREE.Vector2() );
 			renderTarget = new THREE.WebGLRenderTarget( size.width, size.height, parameters );
 			renderTarget.texture.name = 'EffectComposer.rt1';
 
