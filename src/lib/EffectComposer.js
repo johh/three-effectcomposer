@@ -25,9 +25,24 @@ export default class EffectComposer {
 				stencilBuffer: false,
 			};
 
-			const size = renderer.getDrawingBufferSize( new THREE.Vector2() );
-			renderTarget = new THREE.WebGLRenderTarget( size.width, size.height, parameters );
+			const size = renderer.getSize( new THREE.Vector2() );
+			this._pixelRatio = renderer.getPixelRatio();
+			this._width = size.width;
+			this._height = size.height;
+
+			renderTarget = new THREE.WebGLRenderTarget(
+				this._width * this._pixelRatio,
+				this._height * this._pixelRatio,
+				parameters,
+			);
+
 			renderTarget.texture.name = 'EffectComposer.rt1';
+
+		} else {
+
+			this._pixelRatio = 1;
+			this._width = renderTarget.width;
+			this._height = renderTarget.height;
 
 		}
 
@@ -44,7 +59,7 @@ export default class EffectComposer {
 
 		this.copyPass = new ShaderPass( CopyShader );
 
-		this._previousFrameTime = Date.now();
+		this.clock = new THREE.Clock();
 
 	}
 
@@ -92,11 +107,9 @@ export default class EffectComposer {
 	}
 
 
-	render( deltaTime = ( Date.now() - this._previousFrameTime ) * 0.001 ) {
+	render( deltaTime = this.clock.getDelta() ) {
 
 		// deltaTime value is in seconds
-
-		this._previousFrameTime = Date.now();
 
 		const currentRenderTarget = this.renderer.getRenderTarget();
 
@@ -160,10 +173,16 @@ export default class EffectComposer {
 
 		if ( renderTarget === undefined ) {
 
-			const size = this.renderer.getDrawingBufferSize( new THREE.Vector2() );
+			const size = this.renderer.getSize( new THREE.Vector2() );
+			this._pixelRatio = this.renderer.getPixelRatio();
+			this._width = size.width;
+			this._height = size.height;
 
 			renderTarget = this.renderTarget1.clone();
-			renderTarget.setSize( size.width, size.height );
+			renderTarget.setSize(
+				this._width * this._pixelRatio,
+				this._height * this._pixelRatio,
+			);
 
 		}
 
@@ -180,14 +199,29 @@ export default class EffectComposer {
 
 	setSize( width, height ) {
 
-		this.renderTarget1.setSize( width, height );
-		this.renderTarget2.setSize( width, height );
+		this._width = width;
+		this._height = height;
+
+		const effectiveWidth = this._width * this._pixelRatio;
+		const effectiveHeight = this._height * this._pixelRatio;
+
+		this.renderTarget1.setSize( effectiveWidth, effectiveHeight );
+		this.renderTarget2.setSize( effectiveWidth, effectiveHeight );
 
 		for ( let i = 0; i < this.passes.length; i += 1 ) {
 
-			this.passes[ i ].setSize( width, height );
+			this.passes[ i ].setSize( effectiveWidth, effectiveHeight );
 
 		}
+
+	}
+
+
+	setPixelRatio( pixelRatio ) {
+
+		this._pixelRatio = pixelRatio;
+
+		this.setSize( this._width, this._height );
 
 	}
 
