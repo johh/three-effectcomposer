@@ -2,6 +2,15 @@
 ![three.js version](https://img.shields.io/badge/three.js-v0.105.0-green.svg?style=flat-square)
 [![GitHub issues](https://img.shields.io/github/issues/johh/three-effectcomposer.svg?style=flat-square)](https://github.com/johh/three-effectcomposer/issues)
 
+## Note for `three` >= v0.105.0
+Please note, that starting with three.js r105, `EffectComposer` is included in the `three` package and installing `@johh/three-effectcomposer` is no longer necessary.
+
+It can be accessed via
+
+```javascript
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+```
+This package is deprecated and unmaintained.
 
 ## Installation
 ```
