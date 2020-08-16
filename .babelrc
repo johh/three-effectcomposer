@@ -1,10 +1,18 @@
 {
-	"presets": [["env",{
-		"targets": {
-			"browsers": ["ie 10"]
-		}
-	}]],
-	"plugins": [
-		"transform-class-properties"
-	]
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "browsers": [
+                        "ie 10"
+                    ]
+                },
+                "modules": false
+            }
+        ]
+    ],
+    "plugins": [
+        "transform-class-properties"
+    ]
 }

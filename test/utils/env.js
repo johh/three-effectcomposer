@@ -1,4 +1,4 @@
-window.EffectComposer = require( '../../dist' );
+window.EffectComposer = require( '../../dist/cjs' );
 
 window.canvasA = document.getElementById( 'canvas-a' );
 window.canvasB = document.getElementById( 'canvas-b' );

@@ -2,7 +2,8 @@
   "name": "@johh/three-effectcomposer",
   "version": "0.0.7",
   "description": "three.js's EffectComposer ported to ES6",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "homepage": "https://github.com/johh/three-effectcomposer#readme",
   "repository": {
     "type": "git",
@@ -10,8 +11,8 @@
   },
   "scripts": {
     "test": "webpack test/utils/env.js -o test/_tmp/EffectComposer.js && mocha && npm run clean:test",
-    "build": "babel src --out-dir dist",
-    "dev": "babel src --out-dir dist --watch --source-maps",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
     "clean:test": "rimraf test/_tmp",
     "clean:build": "rimraf dist"
   },
@@ -47,6 +48,7 @@
     "mocha": "^8.1.1",
     "puppeteer": "^5.2.1",
     "rimraf": "^3.0.2",
+    "rollup": "^2.26.3",
     "three": "^0.106.2",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
