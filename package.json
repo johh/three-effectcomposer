@@ -1,6 +1,6 @@
 {
   "name": "@johh/three-effectcomposer",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "three.js's EffectComposer ported to ES6",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
